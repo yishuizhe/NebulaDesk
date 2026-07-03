@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>NebulaDesk</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <canvas id="scene" aria-label="NebulaDesk live scene"></canvas>
+
+  <div id="chrome" class="chrome">
+    <div class="traffic-space"></div>
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span>NebulaDesk</span>
+    </div>
+    <div class="window-controls" aria-label="Window controls">
+      <button class="icon-btn" id="min-btn" title="Minimize" aria-label="Minimize">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg>
+      </button>
+      <button class="icon-btn" id="max-btn" title="Maximize" aria-label="Maximize">
+        <svg viewBox="0 0 24 24"><path d="M8 4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4Z"/></svg>
+      </button>
+      <button class="icon-btn danger" id="close-btn" title="Close" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <main id="app-shell" class="app-shell">
+    <section class="command-panel" aria-label="Scene controls">
+      <div class="prompt-block">
+        <label for="prompt-input">Vibe prompt</label>
+        <textarea id="prompt-input" spellcheck="false">midnight aurora above a quiet cyberpunk ocean, golden dust, cinematic calm, slow drift</textarea>
+        <div class="prompt-actions">
+          <button class="primary-btn" id="generate-btn">
+            <svg viewBox="0 0 24 24"><path d="M13 2 3 14h8l-1 8 11-13h-8l0-7Z"/></svg>
+            Generate
+          </button>
+          <button class="icon-btn solid" id="random-btn" title="Random scene" aria-label="Random scene">
+            <svg viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="preset-strip" id="preset-strip" aria-label="Preset prompts"></div>
+
+      <div class="control-grid">
+        <label class="control-row">
+          <span>Intensity</span>
+          <input id="intensity" type="range" min="0.2" max="1.8" step="0.01" value="1.06">
+        </label>
+        <label class="control-row">
+          <span>Velocity</span>
+          <input id="velocity" type="range" min="0.08" max="2.2" step="0.01" value="0.74">
+        </label>
+        <label class="control-row">
+          <span>Gravity</span>
+          <input id="gravity" type="range" min="-1" max="1" step="0.01" value="0.18">
+        </label>
+        <label class="control-row">
+          <span>Grain</span>
+          <input id="grain" type="range" min="0" max="1" step="0.01" value="0.36">
+        </label>
+      </div>
+
+      <div class="metric-grid">
+        <div>
+          <span>Seed</span>
+          <strong id="seed-label">nebula</strong>
+        </div>
+        <div>
+          <span>Palette</span>
+          <strong id="palette-label">aurora</strong>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <button class="tool-btn" id="wallpaper-btn" title="Start desktop wallpaper">
+          <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Z"/><path d="M8 21h8M12 17v4"/></svg>
+          Wallpaper
+        </button>
+        <button class="tool-btn" id="export-btn" title="Export PNG">
+          <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+          PNG
+        </button>
+        <button class="tool-btn" id="save-btn" title="Save preset">
+          <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M7 3v6h8M7 21v-8h10v8"/></svg>
+          Save
+        </button>
+        <button class="tool-btn" id="load-btn" title="Load preset">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5-5 5 5M12 5v12"/></svg>
+          Load
+        </button>
+        <button class="tool-btn" id="copy-btn" title="Copy scene seed">
+          <svg viewBox="0 0 24 24"><path d="M8 8h11v11H8z"/><path d="M5 16H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1"/></svg>
+          Copy
+        </button>
+      </div>
+    </section>
+
+    <section class="status-panel" aria-label="Scene status">
+      <div class="scene-title">
+        <span id="scene-kicker">local generative wallpaper</span>
+        <h1 id="scene-title">Prompt-shaped living scenes</h1>
+      </div>
+      <div class="readout">
+        <div><span>FPS</span><strong id="fps-label">60</strong></div>
+        <div><span>Particles</span><strong id="particle-label">0</strong></div>
+        <div><span>Mode</span><strong id="mode-label">Studio</strong></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="./renderer.js"></script>
+</body>
+</html>

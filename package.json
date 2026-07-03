@@ -1,0 +1,92 @@
+{
+  "name": "nebuladesk",
+  "productName": "NebulaDesk",
+  "version": "0.1.0",
+  "description": "Prompt-shaped living wallpapers and cinematic focus scenes for macOS and Windows.",
+  "author": "yishuizhe",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yishuizhe/NebulaDesk.git"
+  },
+  "homepage": "https://github.com/yishuizhe/NebulaDesk#readme",
+  "bugs": {
+    "url": "https://github.com/yishuizhe/NebulaDesk/issues"
+  },
+  "keywords": [
+    "electron",
+    "wallpaper",
+    "generative-art",
+    "desktop",
+    "macos",
+    "windows",
+    "canvas",
+    "vibecoding"
+  ],
+  "main": "main.js",
+  "private": false,
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check main.js && node --check preload.js && node --check app/renderer.js",
+    "smoke:screenshot": "electron scripts/capture-smoke.js",
+    "build:mac": "electron-builder --mac dmg zip",
+    "build:mac:dir": "electron-builder --mac dir",
+    "build:win": "electron-builder --win nsis portable",
+    "build:win:dir": "electron-builder --win dir"
+  },
+  "build": {
+    "appId": "com.yishuizhe.nebuladesk",
+    "productName": "NebulaDesk",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "app/**/*",
+      "main.js",
+      "preload.js",
+      "package.json",
+      "README.md",
+      "LICENSE"
+    ],
+    "asar": true,
+    "mac": {
+      "category": "public.app-category.graphics-design",
+      "identity": null,
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "artifactName": "NebulaDesk-${version}-mac-${arch}.${ext}",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "NebulaDesk"
+    }
+  },
+  "devDependencies": {
+    "electron": "42.4.1",
+    "electron-builder": "^26.15.3"
+  }
+}
