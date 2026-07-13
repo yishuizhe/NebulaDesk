@@ -1,5 +1,9 @@
 # NebulaDesk
 
+[![CI](https://github.com/yishuizhe/NebulaDesk/actions/workflows/ci.yml/badge.svg)](https://github.com/yishuizhe/NebulaDesk/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/yishuizhe/NebulaDesk)](https://github.com/yishuizhe/NebulaDesk/releases/latest)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Prompt-shaped living wallpapers for macOS and Windows.
 
 NebulaDesk turns a short vibe prompt into a cinematic, animated desktop scene. It runs fully local: no account, no API key, no cloud renderer. Type a phrase, generate a seeded nebula, tune the motion, export a PNG, save a preset, or send the scene into a desktop wallpaper window.
